@@ -1,14 +1,13 @@
 import React from "react";
 import RoomsList from "./components/RoomsList";
-import BasicExample from "./components/RoomView";
+import './index.css'
 
 function App() {
+
   return (
-    <div>
-        <RoomsList />
-        <BasicExample />
-    </div>
-  );
+    <RoomsList />
+  )
+
 }
 
 export default App;
