@@ -59,23 +59,35 @@ function RoomsList() {
         return isAvailable
     };
 
+
     rooms.map(x => {
         return console.log('is available today?: ' + isBookedToday(x));
-    })
+    });
 
     return (
-        <ul className="main-list">
-            {rooms.map((x) =>
-                <li className={isBookedToday(x) ? "free" : "booked"} key={x.id}>{x.name}
-                    <ul className="details-list">
-                        {/* <li>{x.has_projector.toString()}</li> */}
-                        <li><div className="projector"><span id="square"></span><span id="triangle-left"></span></div></li>
-                        <li>{x.capacity}</li>
-                    </ul>
-                </li>)}
-        </ul>
-    )
 
+        // TODO: po najechaniu na salę w bocznym kontenerze wyświetla się kalendarz z listą dostępnych terminów
+        // TODO: funkcjonalność przycisków: edytuj, usuń, zarezerwuj
+        // TODO: dokończyć funkcjonalność oznaczania czy sala jest dziś wolna czy zajęta
+
+        <div className="roomsListContainer">
+            {rooms.map((x) =>
+                <ul className={isBookedToday(x) ? "free main-list" : "booked main-list"}>
+                    <li className="listItemName">{(x.name).toUpperCase()}</li>
+                    <ul className="listDetails">
+                        <li className="listItemDetails">projektor: {x.has_projector.toString()}</li>
+                        <li className="listItemDetails">pojemność: {x.capacity}</li>
+                    </ul>
+                    <ul className="listFunctions">
+                        <li>edytuj</li>
+                        <li>usuń</li>
+                        <li>rezerwuj</li>
+                    </ul>
+                </ul>
+            )}
+
+        </div>
+    )
 }
 
 export default RoomsList;

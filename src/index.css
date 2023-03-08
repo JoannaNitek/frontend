@@ -2,68 +2,142 @@
     box-sizing: border-box;
 }
 
+/* kolory: */
+/* white: #FBF5F3  */
+/* gray: #A0A0A0 */
+/* yellow: #E28413 */
+/* blue: #000022 */
+
+/* czcionka:  */
+/* Karla Extra Light 200 */
+/* Karla Regular 400*/
+/* Karla Medium 500*/
+/* Karla Bold 700*/
+
+
 body {
-    display: flex;
+    /* display: flex; */
     min-height: 100vh;
-    background-color: #A0D1C5;
-    color: #62313d;
-    justify-content: center;
-    align-items: center;
+    background-color: #FBF5F3;
+    color: #000022;
+    /* justify-content: center;
+    align-items: center; */
+    font-family: Helvetica, sans-serif;
+    overflow: hidden;
+    font-family: 'Karla', sans-serif;
 }
 
-ul {
-    list-style: none;
+/* .mainContainer {
+    display: flex;
+    width: 80vw;
+    margin: auto;
+} */
+
+.navContainer {
+margin: 5em;
+padding-left: 2em;
+max-height: 10vh;
 }
+
+.functionContainer{
+    display: flex;
+    flex-wrap: wrap;
+    width: 90vw;
+    margin: auto;
+    height: 70vh;
+    border: 1px solid #000022;
+}
+
+.searchContainer {
+    flex: 100%;
+    height: 15%;
+    border-bottom: 1px solid #000022;
+}
+.sideContainer {
+    flex: 30%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 2em;
+}
+
+hr {
+    height: 2px;
+    width: 80%;
+}
+
+.sideContainer h2 {
+    font-weight: 200;
+    text-align: center;
+}
+
+.scrollingList {
+    flex: 70%;
+    height: 85%;
+    border: 1px dashed green;
+}
+.roomsListContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    height: 100%;
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    overflow-y: scroll; /* Add vertical scrollbar */
+}
+ ul {
+    list-style: none;
+ }
 
 .main-list {
-    width: 50vw;
-    border: 1px solid #62313d;
-}
-
-.details-list li {
-    justify-content: space-between;
-}
-
-li {
-    font-size: 40px;
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #62313d;
+    width: 100%;
+    padding: 2em 0 1em 1em;
+    margin: 0;
+    /* justify-content: space-around; */
+}
+
+.main-list:hover {
+    color: #E28413;
+    /* cursor: pointer; */
+}
+
+.listDetails {
+    flex: 25%;
+}
+
+.listFunctions {
+    flex: 25%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: space-around;
+    align-items: flex-end;
+}
+
+.listFunctions li {
+    padding-bottom: .5em;
+}
+
+.listItemName {
+    font-size: 40px;
+    padding-bottom: .5em;
+    flex: 50%
+}
+
+.listItemDetails {
+    font-size: 1em;
+    padding-bottom: .5rem;
 }
 
 .free {
-    color: aliceblue;
+    color: #000022;
 }
 
 .booked {
-    color: blue;
-}
-
-#triangle-left {
-    position: absolute;
-    left: 15px;
-    width: 0;
-    height: 0;
-    border-top: 15px solid transparent;
-    border-right: 30px solid navy;
-    border-bottom: 15px solid transparent;
-    border-radius: 10%;
-    filter: drop-shadow(16px 16px 20px aqua) ;
-  }
-
-
-#square {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background: navy;
-    border-radius: 10%;
-    filter: drop-shadow(6px 6px 20px aqua) ;
-  }
-
-.projector {
-    width: 45px;
-    height: 30px;
-    position: relative;
-    margin: 10px auto;
-    
+    color: #A0A0A0;
 }
