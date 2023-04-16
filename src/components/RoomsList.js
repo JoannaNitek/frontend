@@ -1,10 +1,13 @@
 import React from "react";
 import axios from "axios";
+// import RoomDetails from "./RoomDetails";
+import { Link } from "react-router-dom";
 
 
 function RoomsList() {
-    let [rooms, setRoom] = React.useState([])
+    const [rooms, setRoom] = React.useState([]);
 
+    // useEffect pozwala nam wykonać daną czynność (w tym wypadku request API) tylko raz
     React.useEffect(() => {
         axios.get("/api/rooms/")
             .then((res) => {
@@ -67,23 +70,23 @@ function RoomsList() {
     return (
 
         // TODO: po najechaniu na salę w bocznym kontenerze wyświetla się kalendarz z listą dostępnych terminów
-        // TODO: funkcjonalność przycisków: edytuj, usuń, zarezerwuj
+        // TODO: funkcjonalność przycisków: edytuj, usuń, zarezerwuj -> przenieść do details?
         // TODO: dokończyć funkcjonalność oznaczania czy sala jest dziś wolna czy zajęta
 
         <div className="roomsListContainer">
             {rooms.map((x) =>
-                <ul className={isBookedToday(x) ? "free main-list" : "booked main-list"}>
-                    <li className="listItemName">{(x.name).toUpperCase()}</li>
+                // <Link to={<RoomDetails />}>
+                
+                    <ul className={isBookedToday(x) ? "free main-list" : "booked main-list"}>
+                    <Link to={`rooms/${x.id}`}><li className="listItemName" key={x.id}>{(x.name).toUpperCase()}</li></Link>
                     <ul className="listDetails">
                         <li className="listItemDetails">projektor: {x.has_projector.toString()}</li>
                         <li className="listItemDetails">pojemność: {x.capacity}</li>
                     </ul>
-                    <ul className="listFunctions">
-                        <li>edytuj</li>
-                        <li>usuń</li>
-                        <li>rezerwuj</li>
                     </ul>
-                </ul>
+
+                // </Link>
+                
             )}
 
         </div>
