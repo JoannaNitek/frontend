@@ -54,7 +54,7 @@ max-height: 10vh;
     border-bottom: 1px solid #000022;
 }
 .sideContainer {
-    flex: 30%;
+    flex: 40%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -73,7 +73,7 @@ hr {
 }
 
 .scrollingList {
-    flex: 70%;
+    flex: 60%;
     height: 85%;
     border: 1px dashed green;
 }
