@@ -17,42 +17,38 @@ function App() {
   }, []);
 
   // -- POBIERANIE I FORMATOWANIE AKTUALNEJ DATY
-  const date = new Date();
-  const humanDate = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, "0") + '-' + date.getDate().toString().padStart(2, "0");
+  const currentDate = new Date();
+  const currentHumanDate = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1).toString().padStart(2, "0") + '-' + currentDate.getDate().toString().padStart(2, "0");
 
   //  -- FUNKCJONALNOŚĆ SPRAWDZAJĄCA CZY KTÓRAŚ Z REZERWACJI DANEJ SALI JEST TAKA SAMA JAK DZISIEJSZA DATA
   //  -- CZYLI, CZY DANA SAL JEST DZIŚ DOSTĘPNA CZY NIE
   // -- FUNKCJA, KTÓRA PORÓWNUJE PODANĄ DATĘ Z DATĄ AKTUALNĄ I ZWRACA FALSE JEŚLI DATY SĄ TAKIE SAME
-  const freeOrBooked = x => {
-    let isToday;
-    if (x === humanDate) {
-      isToday = false
+  const isBookedToday = reservationDay => {
+    if (reservationDay === currentHumanDate) {
+      return false;
     }
-    else {
-      isToday = true
-    }
-    return isToday;
+    return true;
   };
 
   // -- FUNKCJA, KTÓRA OTRZYMUJE OBIEKT DANEJ SALI, WYCIĄGA Z NIEGO DATY REZERWACJI I WPROWADZA JE DO FUNKCJI freeOrBooked()
-  const isBookedToday = (obj) => {
-    let isAvailable;
-    const res = obj.reservation;
+  const freeOrBooked = (room) => {
+    let isAvailableToday;
+    const res = room.reservation;
     if (Object.keys(res).length === 0) {
-      isAvailable = true
+      isAvailableToday = true
     } else {
       for (const valueR of Object.values(res)) {
-        isAvailable = freeOrBooked(valueR)
+        isAvailableToday = isBookedToday(valueR)
       }
     }
-    return isAvailable
+    return isAvailableToday;
   };
 
   const [seletedRoomDetails, setSelectedRoomDetails] = React.useState([]);
 
   const onSelectedNameChange = (rooms) => {
     setSelectedRoomDetails(rooms);
-    console.log(typeof seletedRoomDetails.has_projector)
+    // console.log(typeof seletedRoomDetails.has_projector)
   };
 
   const [postResult, setPostResult] = React.useState(null);
@@ -105,7 +101,7 @@ function App() {
                   // <ul className="free main-list" onMouseOver={() => onSelectedNameChange(x.id)}>
                   <ul className="free main-list" onMouseEnter={() => onSelectedNameChange(x)}>
                     <li className="listItemName" key={x.id}>{(x.name).toUpperCase()}</li>
-                    <li className="listItemDetails" key={x.name}>{isBookedToday(x) ? "WOLNA" : "ZAJĘTA"}</li>
+                    <li className="listItemDetails" key={x.name}>{freeOrBooked(x) ? "WOLNA" : "ZAJĘTA"}</li>
                     {/* <li className="listItemDetails" key={x.name}>{isFree}</li> */}
                   </ul>
                 )}
